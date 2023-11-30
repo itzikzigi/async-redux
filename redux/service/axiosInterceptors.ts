@@ -1,15 +1,11 @@
 import axios from "axios";
-import { getToken } from "../../features/users/service/localStorageService";
-import { Action } from "@reduxjs/toolkit";
-import { Dispatch } from "react";
+import { Action, Dispatch } from "@reduxjs/toolkit";
 
 const axiosInterceptors =
   () => (next: Dispatch<Action>) => (action: Action) => {
-    const token = getToken();
+    const token = "your token";
     axios.defaults.headers.common["Authorization"] = token;
-    axios.interceptors.request.use((data) => {
-      return Promise.resolve(data);
-    });
+
     return next(action);
   };
 

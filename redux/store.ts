@@ -1,14 +1,10 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import userReducer from "../features/users/user-slice";
-import bannersSlice from "../features/banners/bannersSlice";
+import { configureStore } from "@reduxjs/toolkit";
 import axiosInterceptors from "./service/axiosInterceptors";
+import mySlice from "../slices/mySlice";
 
-const rootReducer = combineReducers({
-  user: userReducer,
-  banners: bannersSlice,
-});
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: mySlice,
+
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({ serializableCheck: false }).concat(
       axiosInterceptors
